@@ -1,0 +1,28 @@
+
+
+
+// Whitespace lines should be preserved
+
+
+
+
+    // This \n is 'a' test 0 of injects
+    // This is a test of nothing special
+    // This is a test 0 of two injects 0
+    // This \n is 'a' test 2 of injects
+    // This is a test of nothing special
+    // This is a test 2 of two injects 2
+    // This \n is 'a' test 4 of injects
+    // This is a test of nothing special
+    // This is a test 4 of two injects 4
+    // This \n is 'a' test 6 of injects
+    // This is a test of nothing special
+    // This is a test 6 of two injects 6
+    // This \n is 'a' test 8 of injects
+    // This is a test of nothing special
+    // This is a test 8 of two injects 8
+    // This \n is 'a' test 10 of injects
+    // This is a test of nothing special
+    // This is a test 10 of two injects 10
+
+@@ testing Gargle
