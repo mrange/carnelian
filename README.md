@@ -30,6 +30,8 @@ class SomeClass
 Line by line:
 
 1. ```@@@ metaprogram```
+   * A preprocessor tag indicating this is a carnelian metaprogram
+1. ```@@@ extension cs```
    * A preprocessor tag setting the output extension to cs (C#)
 2. ```class SomeClass```
    * This line is injected into the output file
