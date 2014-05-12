@@ -18,7 +18,7 @@ module CarnelianRuntime
         end
 
         def write (value)
-            @current_line << (value || "").to_s
+            @current_line << value.to_s
         end
 
         def new_line ()
