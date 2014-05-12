@@ -13,6 +13,9 @@
 require 'ostruct'
 
 module CarnelianExecutor
+    class CarnelianError < RuntimeError
+    end
+
     module Details
         def self.make_match (match, &processor)
             os = OpenStruct.new
@@ -21,7 +24,7 @@ module CarnelianExecutor
             return os
         end
 
-        def self.make_template_write_line (lines,line, begin_tag, end_tag)
+        def self.make_template_write_line (lines, line, begin_tag, end_tag)
 
             length          = line.length
             if length > 0 then
@@ -38,10 +41,13 @@ module CarnelianExecutor
                     if !is_inside_tag then
                         slice = line.slice current_index, (effective_index - current_index)
                         slice.gsub! /(\\|\')/, '\\\\\1'
-                        l = "document.write '"
-                        l << slice
-                        l << "'"
-                        lines << l
+
+                        if slice.length > 0 then
+                            l = "document.write '"
+                            l << slice
+                            l << "'"
+                            lines << l
+                        end
 
                         current_index   = effective_index + begin_tag.length
                         current_tag     = end_tag
@@ -109,16 +115,6 @@ module CarnelianExecutor
                                     do |line_context, metaprogram|
                                         make_template_write_line metaprogram.template_lines, line_context.match_data["line"], line_context.begin_tag, line_context.end_tag
                                     end
-        $match_invalid_line     = make_match (/^@@.*$/) \
-                                    do |line_context, metaprogram|
-                                        failure = "%s(%d) : Invalid line: %s" %
-                                                    [
-                                                        line_context.file_name  ,
-                                                        line_context.line_no    ,
-                                                        line_context.line       ,
-                                                    ]
-                                        metaprogram.failures <<  failure
-                                    end
         $match_normal_line      = make_match (/^(?<line>.*)$/) \
                                     do |line_context, metaprogram|
                                         make_template_write_line metaprogram.template_lines, line_context.match_data["line"], line_context.begin_tag, line_context.end_tag
@@ -139,7 +135,6 @@ module CarnelianExecutor
                         $match_template_line    ,
                         $match_program_line     ,
                         $match_escaped_line     ,
-                        $match_invalid_line     ,
                         $match_normal_line      ,
                         $match_unmatched_line   ,
                     ]
@@ -215,14 +210,13 @@ module CarnelianExecutor
             return metaprogram
         end
 
-        class ExecuteFailure < RuntimeError
-        end
-
-
         def self.build_metaprogram (filename)
             metaprogram = read_metaprogram filename
 
-            raise "Failures detected" if metaprogram.failures.length > 0
+            if metaprogram.failures.length > 0 then
+                raise CarnelianError, "Failures detected: " + metaprogram.failures.join(', ')
+            end
+
 
             lines = []
             for req in metaprogram.requires
