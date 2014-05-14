@@ -18,7 +18,7 @@
 @@>
 @@> https_options   = {use_ssl: true, verify_mode: OpenSSL::SSL::VERIFY_NONE}
 @@> http_options    = {}
-@@> options         = base_uri.scheme == "https" ? https_options : http_options
+@@> options         = base_uri.scheme == 'https' ? https_options : http_options
 @@>
 @@> includes        = []
 @@> logs            = []
@@ -85,10 +85,19 @@
 @@>             document.write define.rstrip!
 @@>             document.new_line
 @@>         end
+@@>     end
+@@>     for inc in includes
+@@>         document.write 'namespace %s' % $namespace
+@@>         document.new_line
+@@>         document.write '{'
+@@>         document.new_line
 @@>         for line in inc.lines
+@@>             document.write '    '
 @@>             document.write line.rstrip!
 @@>             document.new_line
 @@>         end
+@@>         document.write '}'
+@@>         document.new_line
 @@>     end
 @@> end
 
@@ -109,8 +118,8 @@
 @@+
 @@+ $match_include  = make_match (/^\s*\/\/ ### INCLUDE:\s*(?<filename>\S+)\s*$/) \
 @@+                     do |match, base_url, data|
-@@+                         filename = match["filename"]
-@@+                         url = "%s/%s" % [base_url, filename]
+@@+                         filename = match['filename']
+@@+                         url = '%s/%s' % [base_url, filename]
 @@+                         data.next_urls << url
 @@+                     end
 @@+ $match_define   = make_match (/^\s*#\s*define\s+(?<define>\S+)\s*$/) \
