@@ -1,7 +1,7 @@
 TODO
 ====
 
-NextId: 10
+NextId: 11
 
 Bugs (important on top)
 -----------------------
@@ -13,6 +13,7 @@ Features (important on top)
 
 Done (recent on top)
 --------------------
+10. @@><newline> doesn't work properly
 5. Fix gemspec:  WARNING:  description and summary are identical
 9. Lines starting with @@= doesn't work
 6. false values are not injected into stream

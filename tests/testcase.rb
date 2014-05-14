@@ -1,12 +1,12 @@
 require 'carnelian_runtime'
 require 'ostruct'
-def HelperMethodY (x)
-    puts "HelperY"
-end
-# embedded comment
-def HelperMethod (input)
-    "Hello %s" % input
-end
+ def HelperMethodY (x)
+     puts "HelperY"
+ end
+ # embedded comment
+ def HelperMethod (input)
+     "Hello %s" % input
+ end
 def generate_document (document)
     document.new_line
     document.new_line
@@ -33,8 +33,8 @@ def generate_document (document)
     document.new_line
     document.write '// Simple ruby expression tests'
     document.new_line
-    for iter in 0..10
-        if iter % 2 == 0 then
+     for iter in 0..10
+         if iter % 2 == 0 then
     document.write '    // This \\n is \'a\' test '
     document.write (iter)
     document.write ' of injects'
@@ -46,8 +46,8 @@ def generate_document (document)
     document.write ' of two injects '
     document.write (HelperMethod "world")
     document.new_line
-        end
-    end
+         end
+     end
     document.new_line
     document.write '// A helper method'
     document.new_line

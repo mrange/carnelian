@@ -103,11 +103,11 @@ module CarnelianExecutor
                                         line_context.begin_tag  = line_context.match_data["begin_tag"]
                                         line_context.end_tag    = line_context.match_data["end_tag"]
                                     end
-        $match_template_line    = make_match (/^@@\> (?<line>.*)$/) \
+        $match_template_line    = make_match (/^@@\>(?<line>.*)$/) \
                                     do |line_context, metaprogram|
                                         metaprogram.template_lines         << line_context.match_data["line"]
                                     end
-        $match_program_line     = make_match (/^@@\+ (?<line>.*)$/) \
+        $match_program_line     = make_match (/^@@\+(?<line>.*)$/) \
                                     do |line_context, metaprogram|
                                         metaprogram.program_lines          << line_context.match_data["line"]
                                     end

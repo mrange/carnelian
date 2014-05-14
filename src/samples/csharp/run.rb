@@ -56,3 +56,21 @@ $number_types   =
     }
 
 CarnelianExecutor.execute_metaprogram_to_file "numerical_extensions.mp", "generated_extensions.cs"
+
+$root_path      = "https://raw.githubusercontent.com/"
+$t4include      =
+    {
+        includes:
+            [
+                "mrange/T4Include/master/Extensions/BasicExtensions.cs" ,
+                "mrange/T4Include/master/Common/ConsoleLog.cs"          ,
+#                "SamSaffron/dapper-dot-net/master/Dapper/SqlMapper.cs"  ,
+            ]                                                           ,
+        blacklist:
+            [
+                /.*AssemblyInfo.cs$/                                    ,
+            ]                                                           ,
+    }
+
+CarnelianExecutor.execute_metaprogram_to_file "t4include.mp", "generated_includes.cs"
+

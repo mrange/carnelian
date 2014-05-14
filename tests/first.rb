@@ -4,12 +4,12 @@ def generate_document (document)
     document.new_line
     document.write '{'
     document.new_line
-    for iter in 0..10
+     for iter in 0..10
     document.write '    public int X'
     document.write (iter)
     document.write ' {get; set; }'
     document.new_line
-    end
+     end
     document.write '}'
     document.new_line
 end
