@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
 #  s.required_ruby_version = "1.9.3"
   s.files =
     [
-      "lib/carnelian_executor.rb" ,
-      "lib/carnelian_runtime.rb" ,
+      "lib/carnelian/executor.rb" ,
+      "lib/carnelian/runtime.rb" ,
     ]
 #  s.test_files = ["test/test_carnelian_executor.rb"]
 end

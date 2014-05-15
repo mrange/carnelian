@@ -1,4 +1,4 @@
-require 'carnelian_runtime'
+require 'carnelian/runtime'
 def generate_document (document)
     document.write 'class SomeClass'
     document.new_line

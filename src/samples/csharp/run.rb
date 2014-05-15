@@ -10,7 +10,7 @@
 # You must not remove this notice, or any other, from this software.
 # ----------------------------------------------------------------------------------------------
 
-require 'carnelian_executor'
+require 'carnelian/executor'
 
 $namespace  = "MyNamespace"
 $classes    =

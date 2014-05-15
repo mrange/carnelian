@@ -198,7 +198,7 @@ module CarnelianExecutor
             metaprogram.extension          = ""
             metaprogram.template_lines     = []
             metaprogram.program_lines      = []
-            metaprogram.requires           = ["carnelian_runtime"]
+            metaprogram.requires           = ["carnelian/runtime"]
             metaprogram.failures           = []
 
             read_metaprogram_impl filename, seen_files, metaprogram

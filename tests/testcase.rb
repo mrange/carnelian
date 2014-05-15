@@ -1,4 +1,4 @@
-require 'carnelian_runtime'
+require 'carnelian/runtime'
 require 'ostruct'
  def HelperMethodY (x)
      puts "HelperY"

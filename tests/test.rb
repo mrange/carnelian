@@ -10,7 +10,7 @@
 # You must not remove this notice, or any other, from this software.
 # ----------------------------------------------------------------------------------------------
 
-require 'carnelian_executor'
+require 'carnelian/executor'
 
 CarnelianExecutor.build_metaprogram_to_file "testcase.mp"
 CarnelianExecutor.build_metaprogram_to_file "first.mp"
