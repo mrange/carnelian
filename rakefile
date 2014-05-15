@@ -1,0 +1,35 @@
+require 'rake'
+
+task :clean do
+    rm 'src/carnelian-0.0.1.gem'
+end
+
+desc 'Building gems'
+task :build_gems do
+    cd 'src'
+    sh 'gem build *.gemspec'
+    cd '..'
+end
+
+desc 'Installing gems'
+task :install_gems => :build_gems do
+    cd 'src'
+    sh 'gem install --user-install --local *.gem'
+    cd '..'
+end
+
+task :uninstall_gems do
+    sh 'gem uninstall carnelian'
+end
+
+task :run_tests do
+    cd 'tests'
+    sh 'ruby test.rb'
+    cd '..'
+end
+
+task :all => [:clean, :build_gems, :install_gems, :run_tests]
+
+task :install => :install_gems
+task :uninstall => :uninstall_gems
+task :default => :all
