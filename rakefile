@@ -1,7 +1,7 @@
 require 'rake'
 
 task :clean do
-    rm 'src/carnelian-0.0.1.gem'
+    rm 'src/carnelian-1.0.0.gem'
 end
 
 desc 'Building gems'
@@ -19,7 +19,7 @@ task :install_gems => :build_gems do
 end
 
 task :uninstall_gems do
-    sh 'gem uninstall carnelian'
+    sh 'gem uninstall --all carnelian'
 end
 
 task :run_tests do
@@ -28,7 +28,7 @@ task :run_tests do
     cd '..'
 end
 
-task :all => [:clean, :build_gems, :install_gems, :run_tests]
+task :all => [:build_gems, :install_gems, :run_tests]
 
 task :install => :install_gems
 task :uninstall => :uninstall_gems
