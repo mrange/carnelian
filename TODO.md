@@ -1,14 +1,14 @@
 TODO
 ====
 
-NextId: 11
+NextId: 12
 
 Bugs (important on top)
 -----------------------
 
 Features (important on top)
 ---------------------------
-10. Don't overwrite file if content is unchanged (limit rebuilds)
+11. Don't overwrite file if content is unchanged (limit rebuilds)
 3. Add option to generate to streams (possibly better performance for larger result sets)
 7. Add support for generating left/right aligned text
 
