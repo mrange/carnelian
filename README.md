@@ -13,9 +13,13 @@ Carnelian wants to be
   5. Free
 
 By simple we mean that Carnelian should be understandable by almost anyone.
+
 By agnostic we mean that Carnelian should be able to generate code for any text-based
+
 By powerful we mean that Carnelian should be able to solve a big class of problems
+
 By lightweight we mean that Carnelian should be able to execute from the command-line without the need of an IDE
+
 By free we mean that Carnelian should be free to use and abuse with no strings attached
 
 Using Carnelian
