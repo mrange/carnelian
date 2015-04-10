@@ -1,21 +1,35 @@
 carnelian - a ruby code generator tool
 ======================================
 
-The most transformative event for me as developer was when
-I got introduced to T4 in Visual Studio.
+"Become what you are... a meta programmer"
 
-T4 is a simple, inelegant and yet extremely powerful code-generation
-in Visual Studio. Basically...
+Carnelian is inspired by T4 (http://en.wikipedia.org/wiki/Text_Template_Transformation_Toolkit)
 
-T4 is ASP/PHP for code
-----------------------
+Carnelian wants to be
+  1. Simple
+  2. Agnostic
+  3. Powerful
+  4. Lightweight
+  5. Free
 
-I no longer do professional development in Visual Studio, I find the
-only thing I truly miss from VS stack is T4.
+By simple we mean that Carnelian should be understandable by almost anyone.
+By agnostic we mean that Carnelian should be able to generate code for any text-based
+By powerful we mean that Carnelian should be able to solve a big class of problems
+By lightweight we mean that Carnelian should be able to execute from the command-line without the need of an IDE
+By free we mean that Carnelian should be free to use and abuse with no strings attached
 
-carnelian is like T4 but in ruby
---------------------------------
+Using Carnelian
+---------------
 
+Carnelian is a ruby gem that requires ruby/1.9.3+
+```
+gem install --user carnelian
+```
+
+A silly example
+----------------
+
+Create a file named `silly.mp` containing:
 ```
 @@@ metaprogram
 @@@ extension cs
@@ -26,35 +40,35 @@ class SomeClass
 @@> end
 }
 ```
+Then create a file named `run.rb` containing:
+```
+require 'carnelian/executor'
 
-Line by line:
+CarnelianExecutor.execute_metaprogram_to_file "simple.mp"
+```
 
-1. ```@@@ metaprogram```
-   * A preprocessor tag indicating this is a carnelian metaprogram
-1. ```@@@ extension cs```
-   * A preprocessor tag setting the output extension to cs (C#)
-2. ```class SomeClass```
-   * This line is injected into the output file
-4. ```{```
-   * This line is injected into the output file
-5. ```@@> for iter in 0..10```
-   * Template ruby code repeating the text in the loop 10 times
-6. ```public int X@@=iter=@@ {get; set; }```
-   * Text to be repeated, @@=iter=@@ injects the iter variable into the output text
-7. ```@@> end```
-   * Ends the loop
-8. ```}```
-   * This line is injected into the output file
+Execute the carnelian meta program by executing in a shell `ruby run.rb`
 
-This example covers 90% what there is to know about T4 and carnelian.
+This will produce a file named `silly.cs` containing
+```
+class SomeClass
+{
+    public int X0 {get; set; }
+    public int X1 {get; set; }
+    public int X2 {get; set; }
+    public int X3 {get; set; }
+    public int X4 {get; set; }
+    public int X5 {get; set; }
+    public int X6 {get; set; }
+    public int X7 {get; set; }
+    public int X8 {get; set; }
+    public int X9 {get; set; }
+    public int X10 {get; set; }
+}
+```
 
-It's so simple that it's hard to see the use.
-However, I have used T4 generate lots and lots of text-artifacts, saving myself from going insane.
+Although simple silly as Carnelian is based on ruby it can generate code from XML, Database schemas, JSON giving the user power and flexibility.
 
-For instance:
+We have used T4 and Carnelian to generate: TSQL, C#, C++, Java, XML
 
-1. SQL
-2. C#
-3. C++
-4. XML
-5. C
+For more interesting samples see: https://github.com/mrange/carnelian/tree/master/src/samples/csharp
