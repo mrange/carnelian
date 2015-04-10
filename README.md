@@ -76,3 +76,20 @@ Although simple silly as Carnelian is based on ruby it can generate code from XM
 We have used T4 and Carnelian to generate: TSQL, C#, C++, Java, XML
 
 For more interesting samples see: https://github.com/mrange/carnelian/tree/master/src/samples/csharp
+
+Available Carnelian tags
+
+  1. `@@@` - Preprocessor tag, used to affect the code generation behavior
+  2. `@@>` - Template tag, used to write template code
+  3. `@@+` - Code tag, used to write code outside the main template loop. Useful for creating support functions/classes
+  4. `@@=ruby_expression=@@` - Inject tag, used to inject the `ruby_expression` into the output text
+
+Available Carnelian preprocessor tags
+
+  1. `@@@ metaprogram` - The first line in a valid Carnelian meta program 
+  2. `@@@ require ruby_package` - Adds `require 'ruby_package'` to the meta program
+  3. `@@@ extension cs` - The extension of the generated file (can be overriden)
+  4. `@@@ include meta_program.mp` - Includes a Carnelian meta program, similar to require in ruby
+  5. `@@@ inject_tokens begin end` - Advanced: Allows overriding of the inject tokens (default `@@=`, `=@@`), used id odd cases
+
+By the way - The Carnelian Gem is roughly 7 kib.
