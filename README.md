@@ -48,7 +48,7 @@ Then create a file named `run.rb` containing:
 ```
 require 'carnelian/executor'
 
-CarnelianExecutor.execute_metaprogram_to_file "simple.mp"
+CarnelianExecutor.execute_metaprogram_to_file "silly.mp"
 ```
 
 Execute the carnelian meta program by executing in a shell `ruby run.rb`
