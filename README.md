@@ -92,4 +92,6 @@ Available Carnelian preprocessor tags
   4. `@@@ include meta_program.mp` - Includes a Carnelian meta program, similar to require in ruby
   5. `@@@ inject_tokens begin end` - Advanced: Allows overriding of the inject tokens (default `@@=`, `=@@`), used id odd cases
 
+If you happen to use sublime there's a carnelian sublime plugin: https://github.com/mrange/carnelian/tree/master/src/sublime
+
 By the way - The Carnelian Gem is roughly 7 kib.
