@@ -13,7 +13,7 @@
 require 'carnelian/executor'
 
 CarnelianExecutor.build_metaprogram_to_file "testcase.mp"
-CarnelianExecutor.build_metaprogram_to_file "first.mp"
+CarnelianExecutor.build_metaprogram_to_file "first.mp", "first.rb", true
 
 CarnelianExecutor.execute_metaprogram_to_file "testcase.mp"
-CarnelianExecutor.execute_metaprogram_to_file "first.mp"
+CarnelianExecutor.execute_metaprogram_to_file "first.mp", "first.cs", true

@@ -277,13 +277,23 @@ document.get_lines
         metaprogram.metaprogram
     end
 
-    def self.build_metaprogram_to_file (filename,output_filename=nil)
+    def self.build_metaprogram_to_file (filename,output_filename=nil,always_overwrite=false)
         extension       = File.extname filename
         basename        = File.basename filename, extension
 
         metaprogram     = Details.build_metaprogram filename
 
         outname         = output_filename || ("%s.rb" % [basename])
+
+        if !always_overwrite && File.exists?(outname) then
+            existing = ""
+
+            File.open outname, "r" do |file|
+                existing = file.read
+            end
+
+            return if existing == metaprogram.metaprogram
+        end
 
         File.open outname, "w" do |file|
             file.write metaprogram.metaprogram
@@ -296,7 +306,7 @@ document.get_lines
         metaprogram.result
     end
 
-    def self.execute_metaprogram_to_file (filename,output_filename=nil)
+    def self.execute_metaprogram_to_file (filename,output_filename=nil,always_overwrite=false)
         extension       = File.extname filename
         basename        = File.basename filename, extension
 
@@ -304,6 +314,16 @@ document.get_lines
 
         new_extension   = metaprogram.extension == "" ? "txt" : metaprogram.extension
         outname         = output_filename || ("%s.%s" % [basename, new_extension])
+
+        if !always_overwrite && File.exists?(outname) then
+            existing = ""
+
+            File.open outname, "r" do |file|
+                existing = file.read
+            end
+
+            return if existing == metaprogram.result
+        end
 
         File.open outname, "w" do |file|
             file.write metaprogram.result
