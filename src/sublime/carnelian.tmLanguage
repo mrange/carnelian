@@ -27,6 +27,14 @@
 			<string>keyword.source.mp</string>
 		</dict>
 		<dict>
+			<key>comment</key>
+			<string>Meta inline</string>
+			<key>match</key>
+			<string>^@@\-</string>
+			<key>name</key>
+			<string>keyword.source.mp</string>
+		</dict>
+		<dict>
 			<key>begin</key>
 			<string>\@@=</string>
 			<key>comment</key>

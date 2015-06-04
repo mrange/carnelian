@@ -1,7 +1,7 @@
 require 'rake'
 
 task :clean do
-    rm 'src/carnelian-1.0.0.gem'
+    rm 'src/carnelian-1.1.0.gem'
 end
 
 desc 'Building gems'

@@ -1,7 +1,7 @@
 TODO
 ====
 
-NextId: 12
+NextId: 13
 
 Bugs (important on top)
 -----------------------
@@ -14,6 +14,7 @@ Features (important on top)
 
 Done (recent on top)
 --------------------
+13. Support template lines inside @@+
 10. @@><newline> doesn't work properly
 5. Fix gemspec:  WARNING:  description and summary are identical
 9. Lines starting with @@= doesn't work

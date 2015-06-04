@@ -11,6 +11,7 @@
 // Lines starting with double @@
 \@@  @@="Testing"=@@
 \@@+  @@="Testing"=@@
+\@@-  @@="Testing"=@@
 \@@>  @@="Testing"=@@
 
 // Simple ruby expression tests
@@ -22,8 +23,16 @@
 @@>     end
 @@> end
 
+@@> WriteSomething document,3
+
 // A helper method
 @@+ # embedded comment
 @@+ def HelperMethod (input)
 @@+     "Hello %s" % input
+@@+ end
+
+@@+ def WriteSomething(document, sz)
+@@+     for iter in 0..sz
+@@- // Something @@=iter=@@
+@@+     end
 @@+ end

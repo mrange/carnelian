@@ -25,6 +25,9 @@ patterns:
         '1':
             name:   constant.language.mp
     comment:    Meta line
+-   match:      ^@@\-
+    name:       keyword.source.mp
+    comment:    Meta inline
 -   name:       keyword.source.mp
     begin:      \@@=
     patterns:

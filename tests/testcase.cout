@@ -8,6 +8,7 @@ falsetrue
 // Lines starting with double @@
 @@  Testing
 @@+  Testing
+@@-  Testing
 @@>  Testing
 
 // Simple ruby expression tests
@@ -29,5 +30,10 @@ falsetrue
     // This \n is 'a' test 10 of injects
     // This is a test of nothing special
     // This is a test 10 of two injects Hello world
+
+ // Something 0
+ // Something 1
+ // Something 2
+ // Something 3
 
 // A helper method

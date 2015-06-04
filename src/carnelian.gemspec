@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name                  = "carnelian"
-  s.version               = "1.0.0"
+  s.version               = "1.1.0"
   s.date                  = %q{2014-05-09}
   s.authors               = ["Mårten Rånge"]
   s.summary               = %q{Carnelian is code generation tool}

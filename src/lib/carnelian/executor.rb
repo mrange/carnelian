@@ -90,7 +90,7 @@ module CarnelianExecutor
                                     end
         $match_require          = make_match (/^@@@ require\s+(?<require>\S+)\s*$/) \
                                     do |line_context, metaprogram|
-                                        metaprogram.requires   << line_context.match_data["require"]
+                                        metaprogram.requires << line_context.match_data["require"]
                                     end
         $match_extension        = make_match (/^@@@ extension\s+(?<extension>\S+)\s*$/) \
                                     do |line_context, metaprogram|
@@ -105,24 +105,32 @@ module CarnelianExecutor
                                     end
         $match_template_line    = make_match (/^@@\>(?<line>.*)$/) \
                                     do |line_context, metaprogram|
-                                        metaprogram.template_lines         << line_context.match_data["line"]
+                                        metaprogram.template_lines << line_context.match_data["line"]
                                     end
         $match_program_line     = make_match (/^@@\+(?<line>.*)$/) \
                                     do |line_context, metaprogram|
-                                        metaprogram.program_lines          << line_context.match_data["line"]
+                                        metaprogram.program_lines << line_context.match_data["line"]
+                                    end
+        $match_program_inline   = make_match (/^@@\-(?<line>.*)$/) \
+                                    do |line_context, metaprogram|
+                                        make_template_write_line metaprogram.program_lines, line_context.match_data["line"], line_context.begin_tag, line_context.end_tag
                                     end
         $match_escaped_line     = make_match (/^\\(?<line>@@.*)$/) \
                                     do |line_context, metaprogram|
                                         make_template_write_line metaprogram.template_lines, line_context.match_data["line"], line_context.begin_tag, line_context.end_tag
                                     end
-        $match_normal_line      = make_match (/^(?<line>.*)$/) \
+        $match_inline           = make_match (/^(?<line>.*)$/) \
                                     do |line_context, metaprogram|
                                         make_template_write_line metaprogram.template_lines, line_context.match_data["line"], line_context.begin_tag, line_context.end_tag
                                     end
         $match_unmatched_line   = make_match (/.*/) \
                                     do |line_context, metaprogram|
-                                        metaprogram.template_lines << "document.write 'UNMATCHED INPUT LINE'"
-                                        metaprogram.template_lines << "document.new_line"
+                                        failure = "%s(%d) : Unmatched input line" %
+                                                    [
+                                                        line_context.file_name  ,
+                                                        line_context.line_no    ,
+                                                    ]
+                                        metaprogram.failures <<  failure
                                     end
 
         $matches =
@@ -134,8 +142,9 @@ module CarnelianExecutor
                         $match_inject_tokens    ,
                         $match_template_line    ,
                         $match_program_line     ,
+                        $match_program_inline   ,
                         $match_escaped_line     ,
-                        $match_normal_line      ,
+                        $match_inline           ,
                         $match_unmatched_line   ,
                     ]
 

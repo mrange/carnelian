@@ -7,6 +7,13 @@ require 'ostruct'
  def HelperMethod (input)
      "Hello %s" % input
  end
+ def WriteSomething(document, sz)
+     for iter in 0..sz
+document.write ' // Something '
+document.write (iter)
+document.new_line
+     end
+ end
 def generate_document (document)
     document.new_line
     document.new_line
@@ -25,6 +32,9 @@ def generate_document (document)
     document.write ("Testing")
     document.new_line
     document.write '@@+  '
+    document.write ("Testing")
+    document.new_line
+    document.write '@@-  '
     document.write ("Testing")
     document.new_line
     document.write '@@>  '
@@ -49,7 +59,10 @@ def generate_document (document)
          end
      end
     document.new_line
+     WriteSomething document,3
+    document.new_line
     document.write '// A helper method'
+    document.new_line
     document.new_line
 end
 
