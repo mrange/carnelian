@@ -1,0 +1,26 @@
+{
+    "name": "carnelian",
+    "displayName": "carnelian-syntax",
+    "description": "carnelian syntax highlighter",
+    "version": "0.0.1",
+    "publisher": "mrange",
+    "engines": {
+        "vscode": "^1.16.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "carnelian",
+            "aliases": ["carnelian", "carnelian"],
+            "extensions": [".mp"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "carnelian",
+            "scopeName": "source.carnelian",
+            "path": "./syntaxes/carnelian.tmLanguage"
+        }]
+    }
+}

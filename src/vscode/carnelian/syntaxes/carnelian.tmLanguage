@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>mp</string>
+	</array>
+	<key>name</key>
+	<string>carnelian</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant.language.carnelian</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Meta line</string>
+			<key>match</key>
+			<string>^@@[&gt;|\+|@](.*)$</string>
+			<key>name</key>
+			<string>keyword.source.carnelian</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Meta inline</string>
+			<key>match</key>
+			<string>^@@\-</string>
+			<key>name</key>
+			<string>keyword.source.carnelian</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\@@=</string>
+			<key>comment</key>
+			<string>inject token</string>
+			<key>end</key>
+			<string>=@@</string>
+			<key>name</key>
+			<string>keyword.source.carnelian</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>.</string>
+					<key>name</key>
+					<string>constant.language.carnelian</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Invalid line</string>
+			<key>match</key>
+			<string>^@@.*$</string>
+			<key>name</key>
+			<string>invalid.illegal.starttoken.carnelian</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.carnelian</string>
+	<key>uuid</key>
+	<string>e7e1138b-c71a-4c85-9d03-8d2b4dae028e</string>
+</dict>
+</plist>
