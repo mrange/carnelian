@@ -1,65 +1,109 @@
-# carnelian README
+# carnelian syntax colorizer
 
-This is the README for your extension "carnelian". After writing up a brief description, we recommend including the following sections.
+A simple extension that colorize [carnelian](https://github.com/mrange/carnelian) templates
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### carnelian - a ruby code generator tool
 
-For example if there is an image subfolder under your extension project workspace:
+"Become what you are... a meta programmer"
 
-\!\[feature X\]\(images/feature-x.png\)
+Carnelian is inspired by T4 (http://en.wikipedia.org/wiki/Text_Template_Transformation_Toolkit)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Carnelian wants to be
+  1. Simple
+  2. Agnostic
+  3. Powerful
+  4. Lightweight
+  5. Free
+
+By simple we mean that Carnelian should be understandable by almost anyone.
+
+By agnostic we mean that Carnelian should be able to generate code for any text-based
+
+By powerful we mean that Carnelian should be able to solve a big class of problems
+
+By lightweight we mean that Carnelian should be able to execute from the command-line without the need of an IDE
+
+By free we mean that Carnelian should be free to use and abuse with no strings attached
+
+Using Carnelian
+---------------
+
+Carnelian is a ruby gem that requires ruby/1.9.3+
+```
+gem install --user carnelian
+```
+
+A silly example
+----------------
+
+Create a file named `silly.mp` containing:
+```
+@@@ metaprogram
+@@@ extension cs
+class SomeClass
+{
+@@> for iter in 0..10
+    public int X@@=iter=@@ {get; set; }
+@@> end
+}
+```
+Then create a file named `run.rb` containing:
+```
+require 'carnelian/executor'
+
+CarnelianExecutor.execute_metaprogram_to_file "silly.mp"
+```
+
+Execute the carnelian meta program by executing in a shell `ruby run.rb`
+
+This will produce a file named `silly.cs` containing
+```
+class SomeClass
+{
+    public int X0 {get; set; }
+    public int X1 {get; set; }
+    public int X2 {get; set; }
+    public int X3 {get; set; }
+    public int X4 {get; set; }
+    public int X5 {get; set; }
+    public int X6 {get; set; }
+    public int X7 {get; set; }
+    public int X8 {get; set; }
+    public int X9 {get; set; }
+    public int X10 {get; set; }
+}
+```
+
+Although simple silly as Carnelian is based on ruby it can generate code from XML, Database schemas, JSON giving the user power and flexibility.
+
+We have used T4 and Carnelian to generate: TSQL, C#, C++, Java, XML
+
+For more interesting samples see: https://github.com/mrange/carnelian/tree/master/src/samples/csharp
+
+Available Carnelian tags
+
+  1. `@@@` - Preprocessor tag, used to affect the code generation behavior
+  2. `@@>` - Template tag, used to write template code
+  3. `@@+` - Code tag, used to write code outside the main template loop. Useful for creating support functions/classes
+  4. `@@=ruby_expression=@@` - Inject tag, used to inject the `ruby_expression` into the output text
+
+Available carnelian preprocessor tags
+
+  1. `@@@ metaprogram` - The first line in a valid carnelian meta program
+  2. `@@@ require ruby_package` - Adds `require 'ruby_package'` to the meta program
+  3. `@@@ extension cs` - The extension of the generated file (can be overriden)
+  4. `@@@ include meta_program.mp` - Includes a carnelian meta program, similar to require in ruby
+  5. `@@@ inject_tokens begin end` - Advanced: Allows overriding of the inject tokens (default `@@=`, `=@@`), used id odd cases
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Ruby 1.9.3+
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
+Initial release of carnelian extension
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
